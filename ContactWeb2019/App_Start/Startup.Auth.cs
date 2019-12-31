@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ContactWeb2019.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ContactWeb2019
 {
@@ -18,6 +19,8 @@ namespace ContactWeb2019
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+
+            CreateRolesAndUsers();
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -63,6 +66,29 @@ namespace ContactWeb2019
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+        }
+
+        private void CreateRolesAndUsers()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            if(!roleManager.RoleExists("Admin"))
+            {
+                roleManager.Create(new IdentityRole() { Name = "Admin" });
+
+                // email a Username musi byt rovnake, inac to nefunguje
+                var user = new ApplicationUser() { UserName = "superadmin@mail.com", Email = "superadmin@mail.com"};
+                var userPwd = "pwd123A*";
+                var identityResult = userManager.Create(user, userPwd);
+
+                if (!identityResult.Succeeded)
+                    throw new Exception("Couldn't create the super admin user");
+
+                userManager.AddToRole(user.Id, "Admin");
+            }
         }
     }
 }
