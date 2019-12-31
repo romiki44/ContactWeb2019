@@ -33,6 +33,7 @@ namespace ContactWeb2019.Models
         public string PhoneSecondary { get; set; }
         
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode =true)]
         public DateTime Birtday { get; set; }
         
         [StringLength(ContactWebConstants.MAX_STREET_ADDRESS_LEGTH)]
