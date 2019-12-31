@@ -20,6 +20,9 @@ namespace ContactWeb2019.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<State> States { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+
         public ApplicationDbContext()
             : base("MsSqlConnection", throwIfV1Schema: false)
         {
