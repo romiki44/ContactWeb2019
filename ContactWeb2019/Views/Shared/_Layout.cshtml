@@ -6,12 +6,15 @@
     <title>@ViewBag.Title - Contact Web</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @{
+        string actionName = ViewContext.RouteData.Values["Action"].ToString();
+        string controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+    }
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark fixed-top">
-            <div class="container">
+            <div class="container-fluid">
                 @Html.ActionLink("Contact Web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarColor02"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -21,15 +24,27 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarColor02">
                     @Html.Partial("_LoginPartial")
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item active">
-                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link text-light" })
+                        <li class="@(actionName=="Index" && controllerName=="Home" ? "nav-item active" : "nav-item")">
+                            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link text-light" })
+                        <li class="@(actionName=="About" && controllerName=="Home" ? "nav-item active" : "nav-item")">
+                            @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link text-light" })
+                        <li class="@(actionName=="Contact" && controllerName=="Home" ? "nav-item active" : "nav-item")">
+                            @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="@(actionName=="Index" && controllerName=="States" ? "nav-item active" : "nav-item")">
+                                @Html.ActionLink("States", "Index", "States", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            <li class="@(actionName=="Index" && controllerName=="Contacts" ? "nav-item active" : "nav-item")">
+                                @Html.ActionLink("My Contacts", "Index", "Contacts", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

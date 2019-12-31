@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #4CAF50;
+}
