@@ -183,10 +183,17 @@
     <Compile Include="Migrations\201912291907217_Initial_Migration.designer.cs">
       <DependentUpon>201912291907217_Initial_Migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912302014532_CreateStateAndContactTables.cs" />
+    <Compile Include="Migrations\201912302014532_CreateStateAndContactTables.designer.cs">
+      <DependentUpon>201912302014532_CreateStateAndContactTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactWebConstants.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -369,6 +376,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912291907217_Initial_Migration.resx">
       <DependentUpon>201912291907217_Initial_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912302014532_CreateStateAndContactTables.resx">
+      <DependentUpon>201912302014532_CreateStateAndContactTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
