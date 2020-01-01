@@ -4,34 +4,17 @@
     ViewBag.Title = "Details";
 }
 <br />
-<h2>Details</h2>
+<h2>Details - @Model.FullName</h2>
 
 <div>
-    <h4>Contact</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.State.Name)
+            @Html.DisplayNameFor(model => model.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.State.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.FullName)
         </dd>
 
         <dt>
@@ -50,54 +33,35 @@
             @Html.DisplayFor(model => model.PhonePrimary)
         </dd>
 
+        @if (!string.IsNullOrEmpty(Model.PhoneSecondary))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneSecondary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneSecondary)
+            </dd>
+        }
+
+        @if (Model.Birtday!=null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Birtday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Birtday)
+            </dd>
+        }
+
         <dt>
-            @Html.DisplayNameFor(model => model.PhoneSecondary)
+            @Html.DisplayNameFor(model => model.FullAddress)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhoneSecondary)
+            @Html.DisplayFor(model => model.FullAddress)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Birtday)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Birtday)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StreetAddress1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StreetAddress2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Zip)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Zip)
-        </dd>
-
     </dl>
 </div>
 <p>

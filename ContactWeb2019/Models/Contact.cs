@@ -11,10 +11,12 @@ namespace ContactWeb2019.Models
     {
         public int Id { get; set; }
 
+        [Display(Name ="First Name")]
         [Required]
         [StringLength(ContactWebConstants.MAX_FIRST_NAME_LEGTH)]
         public string FirstName { get; set; }
 
+        [Display(Name ="Last Name")]
         [Required]
         [StringLength(ContactWebConstants.MAX_LAST_NAME_LEGTH)]
         public string LastName { get; set; }
@@ -24,16 +26,18 @@ namespace ContactWeb2019.Models
         [StringLength(ContactWebConstants.MAX_EMAIl_LEGTH)]
         public string Email { get; set; }
         
+        [Display(Name ="Mobil 1")]
         [Required]
         [Phone]
         [StringLength(ContactWebConstants.MAX_PHONE_LEGTH)]
         public string PhonePrimary { get; set; }
         
+        [Display(Name ="Mobil 2")]
         [StringLength(ContactWebConstants.MAX_PHONE_LEGTH)]
         public string PhoneSecondary { get; set; }
         
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString = "{0:d.M.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Birtday { get; set; }
         
         [StringLength(ContactWebConstants.MAX_STREET_ADDRESS_LEGTH)]
